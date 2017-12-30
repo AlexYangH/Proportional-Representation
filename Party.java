@@ -2,15 +2,20 @@ package AlexYang;
 
 /**
  * @author Alex Yang
- * party objects to be instantiated annonyously in the arraylist in driver class
+ * party objects to be instantiated annonymously in the arraylist in driver class
  */
+
+import java.text.DecimalFormat;
 
 public class Party {
     private String name;
     private int votes;
     private int seats;
     private int remainder;
-    private int quotient;
+    private double quotient;
+    protected double votePercentage;
+
+    private DecimalFormat percentFormat = new DecimalFormat("###.##");
 
     /**
      * constructor - Party
@@ -54,17 +59,17 @@ public class Party {
         return remainder;
     }
 
-    public int getQuotient() {
+    public double getQuotient() {
         return quotient;
     }
 
     public void setQuotient() {
-        quotient = votes / (2*seats+1);
+        quotient = (double)votes / (2*seats+1);
     }
 
     public void displayResults(){
-        System.out.println(name + "- votes: " + votes + " seats: " + seats);
+        System.out.println(name + "- votes: "+votes+" "+
+                percentFormat.format(votePercentage)+"% seats: " + seats);
     }
-
 
 }

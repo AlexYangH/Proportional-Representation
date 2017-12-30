@@ -97,7 +97,22 @@ public class SeatsAllocation {
 
     public static void displayResults(){
         for(int i=0; i<parties.size(); i++){
+            for(int j=0; j<parties.size()-1; j++){
+                if(parties.get(j).getVotes()<parties.get(j+1).getVotes()){
+                    Party temp = parties.get(j+1);
+                    parties.set(j+1, parties.get(j));
+                    parties.set(j, temp);
+                }
+            }
+        }
+
+        for(int i=0; i<parties.size(); i++){
+            parties.get(i).votePercentage = (double) parties.get(i).getVotes()/allVotes*100;
             parties.get(i).displayResults();
+            try {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e){}
         }
     }
 
